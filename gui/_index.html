@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+	<meta charset="utf-8" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.min.css"
+	/> -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello GUI</title>
+    <meta name="description" content="GUI for a Holochain app" />
+  </head>
+
+  <body style="margin: 20 0" onload="get_agent_id()">
+
+	  <script type="text/javascript" src="hc-web-client/hc-web-client-0.5.1.browser.min.js" ></script>
+	  <script type="text/javascript" src="hello.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	  
+	  <div style="width: 20%; float:left">
+		Participants
+		<ul id ="participants" style="text-align: left">
+			<li>Alice</li>
+			<li>Bob</li>
+		</ul>
+ 	  </div>
+	  <div style="width: 80%; float:right">
+	  <div>Agent Address : <span id="agent_id"></span></div>
+
+	  <button onclick="hello()" type="button">Say Hello</button>
+	  <div>Response : <span id="output"></span></div>
+	  
+	  <h3>Create a Post</h3>
+	  <input type="textarea" id="post" placeholder="Enter a post">
+	  <button onclick="create_post()" type="button">Create post</button>
+	  <div>Address : <span id="address_output"></span></div>
+
+
+	  <h3>Retrieve Posts</h3>
+	  <input type="text" id="address" placeholder="Enter person address">
+	  <button onclick="retrieve_posts()" type="button">Get Posts</button>
+
+	  <ul id="posts"></ul>
+	  </div>
+
+  </body>
+</html>
