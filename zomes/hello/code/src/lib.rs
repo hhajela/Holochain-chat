@@ -45,6 +45,7 @@ use hdk::holochain_persistence_api::cas::content::{
 
 pub mod message;
 pub mod member;
+pub mod anchor;
 
 // see https://developer.holochain.org/api/0.0.46-alpha1/hdk/ for info on using the hdk library
 
@@ -117,6 +118,16 @@ mod hello_zome {
         message::message_definition()
     }
 
+    #[entry_def]
+    pub fn member_entry_def() -> ValidatingEntryType {
+        member::member_definition()
+    }
+
+    #[entry_def]
+    pub fn anchor_entry_def() -> ValidatingEntryType {
+        anchor::anchor_definition()
+    }
+
     /*
     #[zome_fn("hc_public")]
     pub fn create_person(person: Person) -> ZomeApiResult<Address> {
@@ -181,11 +192,10 @@ mod hello_zome {
         Ok(result)
 	}
 
-    /*
     #[zome_fn("hc_public")]
-    pub fn get_member_name(member_addr: Address) -> ZomeApiResult<String> {
-
-    }*/
+    pub fn get_member_info(address: Address) -> ZomeApiResult<Vec<member::Member>> {
+        get_links_and_load_type(&address, LinkMatch::Exactly("info"), LinkMatch::Any)
+    }
 
     #[zome_fn("hc_public")]
     pub fn get_all_messages() -> ZomeApiResult<Vec<message::Message>> {
