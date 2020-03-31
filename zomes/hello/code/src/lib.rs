@@ -198,6 +198,12 @@ mod hello_zome {
     }
 
     #[zome_fn("hc_public")]
+    pub fn get_self_info() -> ZomeApiResult<Vec<member::Member>> {
+        let addr = hdk::AGENT_ADDRESS.clone().into();
+        get_links_and_load_type(&addr, LinkMatch::Exactly("info"), LinkMatch::Any)
+    }
+
+    #[zome_fn("hc_public")]
     pub fn get_all_messages() -> ZomeApiResult<Vec<message::Message>> {
 
         let anchor_entry = Entry::App(
