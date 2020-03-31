@@ -256,7 +256,7 @@ mod hello_zome {
             hdk::commit_entry(&anchor_entry)?;
         }
 
-        //add another entry for yourself
+        //add another entry for yourself if it doesn't already exist
         let member_entry = Entry::App(
             "member".into(),
             member::Member {
@@ -264,7 +264,10 @@ mod hello_zome {
                 address: hdk::AGENT_ADDRESS.clone().into(),
             }.into()
         );
-        let member_addr = hdk::commit_entry(&member_entry)?;
+        let member_addr = member_entry.address();
+        if hdk::get_entry(&member_addr)?.is_none() {
+            hdk::commit_entry(&member_entry)?;
+        }
 
         //link agent address to this entry
         let agent_addr = hdk::AGENT_ADDRESS.clone().into();
